@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist</title>        
+    <link rel="stylesheet" type="text/css" href="todolist.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app" class="todoList">
+    <div class="hander" id="hand">
+        <div class="title">
+            <form action="javascript:postaction()" id="form">
+                <label for="title">TodoList</label>
+                <input type="text" placeholder="请输入待办事项" @keyup.enter="add" v-model="inputValue" class="text_button">
+                <input type="submit" value="提交" @click="add();" class="edit_button">  
+            </form>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="content">
+            <h2>
+                
+                <span id="todocount"></span>
+            </h2>
+            <div class="list-box">
+                <ol class="todolist"  id="todolist">
+                    <li v-for="(item,index) in list">
+                    <div v-if="item.isEd" class="item-box">
+                        <input type="text" v-model="item.title" class="edit-item">
+                        <input type="submit" value="完成" @click="subEdit(item)" class="edit_button">
+                    </div>
+                    <div v-else class="item-box"> 
+                        <span>{{item.title}}</span>
+                        <input type="submit" value="删除" @click="delist(index)" class="edit_button">
+                        <input type="submit" value="修改" @click="editItem(item)" class="edit_button">
+                    </div>
+                </li>
+            </ol>
+            </div>
+            
+            <h2>
+               
+                <span id="donecount"></span>
+            </h2>
+            <div class="list-box">
+                <ol class="donelist" id="donelist">
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+ <script src="vue.js"></script>
